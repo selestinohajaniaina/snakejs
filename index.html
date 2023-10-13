@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="src/style.css">
+    <title>Document</title>
+    <script src="src/snake.js" defer></script>
+</head>
+<body>
+    <div class="title">
+        <h1>SNAKE GAME</h1>
+    </div>
+    <div class="parag">
+        <p>
+            Welcome to our game, click this button to start
+        </p>
+        <input type="button" value="Start" class="str">
+    </div>
+	<canvas id='tableau' style="display: none;"></canvas>
+    <div class="chooseColor"></div>
+    <div class="text_scrore">SCORE: <span class="score"></span></div>
+    <script>
+        const title = document.querySelector('.title');
+        const canva = document.querySelector('#tableau');
+        const parag = document.querySelector('.parag');
+        const btn = document.querySelector('.str');
+        const text_scrore = document.querySelector('.text_scrore');
+        const chooseColor = document.querySelector('.chooseColor');
+        
+        btn.onclick = () => {
+            title.style.display = "none";
+            parag.style.display = "none";
+            addInputColor();
+        }
+        
+        function addInputColor() {
+            chooseColor.innerHTML = `
+            <div class="head">
+                <input type="button" value="Back" onclick="back()" class="str">
+                <input type="button" value="Next" onclick="addCanvas()" class="str">
+            </div>
+            <input type="color" id="inputClr" onchange="change(event)" value="#00ff00">
+            <br>
+            <p>Perfect, choose your favorite color now!</p>
+            <div class="affiche">
+                <div class="serpent" id="ser1"></div>
+                <div class="serpent" id="ser2"></div>
+                <div class="serpent" id="ser3"></div>
+                <div id="nour"></div>
+            </div>
+            `;
+            const inputClr = document.querySelector('#inputClr');
+        }
+        
+        function back() {
+            window.location.href = "./";
+        }
+        
+        function addCanvas() {
+            chooseColor.remove();
+            canva.style.display = "block";
+            text_scrore.style.display = "block";
+            veloX = 1;
+            veloY = 0;
+        }
+
+    </script>
+</body>
+</html>
